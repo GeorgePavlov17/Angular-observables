@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription, interval } from 'rxjs';
 import { Observable } from 'rxjs-compat';
@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private countSubscription: Subscription;
+  @ViewChild('f') signupForm: NgForm;
 
   constructor() { }
 
@@ -51,8 +52,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     const suggestedName = 'Superuser';
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form)
+  // onSubmit(form: NgForm) {
+  //   console.log(form)
+  // }
+
+  onSubmit() {
+    console.log(this.signupForm)
   }
 
   ngOnDestroy() {
