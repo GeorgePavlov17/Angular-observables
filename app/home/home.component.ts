@@ -12,6 +12,9 @@ import { map, filter } from 'rxjs/operators';
 export class HomeComponent implements OnInit, OnDestroy {
   private countSubscription: Subscription;
   @ViewChild('f') signupForm: NgForm;
+  defaultQuestion = 'pet';
+  answer = '';
+  genders = ['male', 'female'];
 
   constructor() { }
 
