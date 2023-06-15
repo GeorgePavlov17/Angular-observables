@@ -15,6 +15,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   defaultQuestion = 'pet';
   answer = '';
   genders = ['male', 'female'];
+  user = {
+    username: '',
+    email: '',
+    secretQuestion: '',
+    answer: '',
+    gender: ''
+  };
+  submitted = false;
 
   constructor() { }
 
@@ -78,7 +86,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   // }
 
   onSubmit() {
-    console.log(this.signupForm)
+    this.submitted = true;
+    // this.user.username = this.signupForm.value.username;
+    // this.user.email = this.signupForm.value.email;
+    this.user.secretQuestion = this.signupForm.value.secret;
+    this.user.answer = this.signupForm.value.questionAnswer;
+    this.user.gender = this.signupForm.value.gender;
   }
 
   ngOnDestroy() {
