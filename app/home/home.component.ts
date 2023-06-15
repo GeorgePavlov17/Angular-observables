@@ -53,6 +53,24 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   suggestUserName() {
     const suggestedName = 'Superuser';
+
+    //override every form set into the setValue
+    // this.signupForm.setValue({
+    //   userData: {
+    //     username: suggestedName,
+    //     email: ''
+    //   },
+    //   secret: 'pet',
+    //   questionAnswer: '',
+    //   gender: 'male'
+    // });
+
+    //override a single value 
+    this.signupForm.form.patchValue({
+      userData: {
+        username: suggestedName
+      }
+    });
   }
 
   // onSubmit(form: NgForm) {
