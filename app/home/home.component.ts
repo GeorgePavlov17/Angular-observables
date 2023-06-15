@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Subscription, interval } from 'rxjs';
 import { Observable } from 'rxjs-compat';
 import { map, filter } from 'rxjs/operators';
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           observer.complete();
         }
         if(count > 3) {
-          observer.error(new Error('count is greater than 3'));
+          // observer.error(new Error('count is greater than 3'));
         }
         count++;
       }, 1000);
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }), map((data: number) => {
       return 'Round: ' + (data + 1);
     })).subscribe(data => {
-      console.log(data);
+      // console.log(data);
     }, error => {
       console.log(error);
       alert(error.message);
@@ -48,6 +49,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   suggestUserName() {
     const suggestedName = 'Superuser';
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form)
   }
 
   ngOnDestroy() {
