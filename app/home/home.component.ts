@@ -31,8 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       }, 1000);
     });
 
-    
-
+  
     this.countSubscription = customIntervalObservable.pipe(filter((data: number) => {
       return data > 0;
     }), map((data: number) => {
@@ -45,6 +44,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, () => {
       console.log('Completed!')
     });
+  }
+
+  suggestUserName() {
+    const suggestedName = 'Superuser';
   }
 
   ngOnDestroy() {
