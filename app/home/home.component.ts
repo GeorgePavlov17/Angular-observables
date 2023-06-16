@@ -33,8 +33,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.signupFormReactive = new FormGroup({
-      'username': new FormControl('default username', Validators.required),
-      'email': new FormControl('default email', [Validators.required, Validators.email]),
+      'userData': new FormGroup({
+        'username': new FormControl('default username', Validators.required),
+        'email': new FormControl('default email', [Validators.required, Validators.email]),
+      }),
       'gender': new FormControl('male')
     });
 
