@@ -47,6 +47,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.signupFormReactive.statusChanges.subscribe(
       (value) => console.log(value)
     );
+    this.signupFormReactive.setValue({
+      'userData': {
+        'username': 'Georgi',
+        'email': 'georgi@test.com'
+      },
+      'gender': 'male',
+      'hobbies': []
+    });
+    this.signupFormReactive.patchValue({
+      'userData': {
+        'username': 'Anna'
+      }
+    });
 
     // this.countSubscription = interval(1000).subscribe(count => {
     //   console.log(count);
@@ -119,6 +132,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSubmitReactive() {
     console.log(this.signupFormReactive);
+    this.signupFormReactive.reset();
   }
 
   get controls() {
