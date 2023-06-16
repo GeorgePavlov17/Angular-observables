@@ -111,6 +111,14 @@
             class="form-control"
             formControlName="username"
           />
+          <span
+            *ngIf="
+              !signupFormReactive.get('username').valid &&
+              signupFormReactive.get('username').touched
+            "
+            class="help-block"
+            >Please enter a valid username!</span
+          >
         </div>
         <div class="form-group">
           <label for="email">email</label>
@@ -120,6 +128,14 @@
             class="form-control"
             formControlName="email"
           />
+          <span
+            *ngIf="
+              !signupFormReactive.get('email').valid &&
+              signupFormReactive.get('email').touched
+            "
+            class="help-block"
+            >Please enter a valid email!</span
+          >
         </div>
         <div class="radio" *ngFor="let gender of genders">
           <label>
@@ -128,6 +144,11 @@
             }}
           </label>
         </div>
+        <span
+          *ngIf="!signupFormReactive.valid && signupFormReactive.touched"
+          class="help-block"
+          >Please enter a valid data!</span
+        >
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
     </div>
