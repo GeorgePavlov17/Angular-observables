@@ -1,6 +1,7 @@
 <h3>Yay, I'm home!</h3>
 
-<div class="container">
+<!--TD Forms -->
+<!-- <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form (ngSubmit)="onSubmit()" #f="ngForm">
@@ -11,7 +12,6 @@
               type="text"
               id="username"
               class="form-control"
-              [(ngModel)]="user.username"
               ngModel
               name="username"
               required
@@ -34,7 +34,6 @@
               type="email"
               id="email"
               class="form-control"
-              [(ngModel)]="user.email"
               ngModel
               name="email"
               required
@@ -92,9 +91,31 @@
       <h3>Your data</h3>
       <p>Username: {{ user.username }}</p>
       <p>Mail: {{ user.email }}</p>
-      <p>Secret question: {{ user.secretQuestion }}</p>
+      <p>Secret question: {{ user.question }}</p>
       <p>Answer: {{ user.answer }}</p>
       <p>Gender: {{ user.gender }}</p>
+    </div>
+  </div>
+</div> -->
+
+<!-- Reactive forms -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="email">email</label>
+          <input type="text" id="email" class="form-control" />
+        </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label> <input type="radio" [value]="gender" />{{ gender }} </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
     </div>
   </div>
 </div>

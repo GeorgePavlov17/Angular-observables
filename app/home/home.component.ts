@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Subscription, interval } from 'rxjs';
 import { Observable } from 'rxjs-compat';
 import { map, filter } from 'rxjs/operators';
@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private countSubscription: Subscription;
+  // TD Forms
   @ViewChild('f') signupForm: NgForm;
   defaultQuestion = 'pet';
   answer = '';
@@ -24,9 +25,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
   submitted = false;
 
+  // Reactive Forms
+  gendersReactive = ['male', 'female'];
+  signupFormReactive: FormGroup;
+
   constructor() { }
 
   ngOnInit() {
+    this.signupFormReactive = new FormGroup({
+      'username': new FormControl('default username'),
+      'email': new FormControl('default email'),
+      'gender': new FormControl('male')
+    });
+
     // this.countSubscription = interval(1000).subscribe(count => {
     //   console.log(count);
     // });
