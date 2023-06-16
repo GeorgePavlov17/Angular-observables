@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Subscription, interval } from 'rxjs';
 import { Observable } from 'rxjs-compat';
 import { map, filter } from 'rxjs/operators';
@@ -34,10 +34,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.signupFormReactive = new FormGroup({
       'userData': new FormGroup({
-        'username': new FormControl('default username', Validators.required),
-        'email': new FormControl('default email', [Validators.required, Validators.email]),
+        'username': new FormControl(null, Validators.required),
+        'email': new FormControl(null, [Validators.required, Validators.email]),
       }),
-      'gender': new FormControl('male')
+      'gender': new FormControl('male'),
+      'hobbies': new FormArray([])
     });
 
     // this.countSubscription = interval(1000).subscribe(count => {
@@ -111,6 +112,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSubmitReactive() {
     console.log(this.signupFormReactive);
+  }
+
+  get controls() {
+    return (this.signupFormReactive.get('hobbies') as FormArray).controls;
+  }
+
+  onAddHobby() {
+    const control = new FormControl(null, Validators.required);
+    (<FormArray>this.signupFormReactive.get('hobbies')).push(control)
   }
 
   ngOnDestroy() {
