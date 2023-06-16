@@ -107,6 +107,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.signupForm.reset();
   }
 
+  onSubmitReactive() {
+    console.log(this.signupFormReactive);
+  }
+
   ngOnDestroy() {
     this.countSubscription.unsubscribe();
   }
