@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Subscription, interval } from 'rxjs';
 import { Observable } from 'rxjs-compat';
 import { map, filter } from 'rxjs/operators';
@@ -33,8 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.signupFormReactive = new FormGroup({
-      'username': new FormControl('default username'),
-      'email': new FormControl('default email'),
+      'username': new FormControl('default username', Validators.required),
+      'email': new FormControl('default email', [Validators.required, Validators.email]),
       'gender': new FormControl('male')
     });
 
