@@ -35,12 +35,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.signupFormReactive = new FormGroup({
       'userData': new FormGroup({
-        'username': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
-        'email': new FormControl(null, [Validators.required, Validators.email]),
+        'username': new FormControl('', [Validators.required, this.forbiddenNames.bind(this)]),
+        'email': new FormControl('', [Validators.required, Validators.email], this.forbiddenEmails),
       }),
       'gender': new FormControl('male'),
       'hobbies': new FormArray([])
     });
+    // this.signupFormReactive.valueChanges.subscribe(
+    //   (value) => console.log(value)
+    // );
+    this.signupFormReactive.statusChanges.subscribe(
+      (value) => console.log(value)
+    );
 
     // this.countSubscription = interval(1000).subscribe(count => {
     //   console.log(count);
@@ -129,6 +135,19 @@ export class HomeComponent implements OnInit, OnDestroy {
       return {'nameIsForbidden': true};
     }
     return null;
+  }
+
+  forbiddenEmails(control: FormControl): Promise<any> | Observable<any> {
+    const promise = new Promise<any>((resolve, reject) => {
+      setTimeout(() => {
+        if (control.value === 'test@test.com') {
+          resolve({'emailIsForbidden': true});
+        } else {
+          resolve(null);
+        }
+      }, 1500);
+    });
+    return promise;
   }
 
   ngOnDestroy() {
