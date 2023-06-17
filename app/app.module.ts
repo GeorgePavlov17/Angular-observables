@@ -19,6 +19,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServerResolver } from './servers/server/server-resolver.service';
 import { PipesComponent } from './pipes/pipes.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ShortenPipe } from './pipes/shorten.pipe';
     PageNotFoundComponent,
     ErrorPageComponent,
     PipesComponent,
-    ShortenPipe
+    ShortenPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
