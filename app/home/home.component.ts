@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { Observable } from 'rxjs-compat';
 import { map, filter } from 'rxjs/operators';
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   signupFormReactive: FormGroup;
   forbiddenUsernames = ['Chriss', 'Anna'];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.signupFormReactive = new FormGroup({
@@ -162,6 +163,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       }, 1500);
     });
     return promise;
+  }
+
+  onLoadServers() {
+    this.router.navigate(['/servers']);
   }
 
   ngOnDestroy() {
