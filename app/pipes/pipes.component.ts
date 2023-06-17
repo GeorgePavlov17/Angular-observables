@@ -12,6 +12,12 @@ export class PipesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  appStatus = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('stable');
+    }, 2000);
+  });
+
   servers = [
     {
       instanceType: 'medium',
