@@ -12,6 +12,7 @@ import { AuthGuard } from './auth-guard.service';
 import { canDeactivateGuard } from './servers/edit-server/can-deactivate-guard';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServerResolver } from './servers/server/server-resolver.service';
+import { PipesComponent } from './pipes/pipes.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
     {path: ':id/edit', component: EditServerComponent, canDeactivate: [canDeactivateGuard] }
   ]},
   // { path: 'not-found', component: PageNotFoundComponent },
+  { path: 'pipes', component: PipesComponent },
   { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
 ];
