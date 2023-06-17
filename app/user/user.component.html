@@ -1,4 +1,9 @@
-<p>
+<!-- <p>
   User with <strong>ID {{ id }}</strong> was loaded
 </p>
-<button class="btn btn-primary" (click)="onActivate()">Activate</button>
+<button class="btn btn-primary" (click)="onActivate()">Activate</button> -->
+
+<p>User with ID {{ user.id }} loaded.</p>
+<p>User name is {{ user.name }}</p>
+<hr />
+<a [routerLink]="['/users', 10, 'Anna']">Load Anna</a>
