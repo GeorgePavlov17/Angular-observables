@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { Observable } from 'rxjs-compat';
 import { map, filter } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   signupFormReactive: FormGroup;
   forbiddenUsernames = ['Chriss', 'Anna'];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.signupFormReactive = new FormGroup({
@@ -167,6 +168,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onLoadServers(id: number) {
     this.router.navigate(['/servers', id, 'edit'], {queryParams: {allowEdit: '1'}, fragment: 'loading'});
+  }
+
+  onLogin() {
+    this.authService.login();
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
   ngOnDestroy() {
