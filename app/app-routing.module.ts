@@ -9,6 +9,7 @@ import { EditServerComponent } from './servers/edit-server/edit-server.component
 import { ServerComponent } from './servers/server/server.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth-guard.service';
+import { canDeactivateGuard } from './servers/edit-server/can-deactivate-guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +22,7 @@ const routes: Routes = [
     component: ServersComponent,
     children: [ 
     {path: ':id', component: ServerComponent},
-    {path: ':id/edit', component: EditServerComponent}
+    {path: ':id/edit', component: EditServerComponent, canDeactivate: [canDeactivateGuard] }
   ]},
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
