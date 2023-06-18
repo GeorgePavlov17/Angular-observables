@@ -30,8 +30,11 @@ export class PostsService {
                 }
             }
             return postsArray;
-            }));
+        }));
     }
 
+    deletePosts() {
+        return this.http.delete('https://angular-http-a91bb-default-rtdb.firebaseio.com/posts.json');
+    }
 
 }

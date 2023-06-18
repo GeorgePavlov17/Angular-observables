@@ -41,6 +41,11 @@ export class HttpComponent implements OnInit {
 
   onClearPosts() {
     // Send Http request
+    
+    //We are subscribing here in the component, because we also want to update our loadedPosts array and make it empty
+    this.postsService.deletePosts().subscribe(() => {
+      this.loadedPosts = [];
+    });
   }
 
 }
