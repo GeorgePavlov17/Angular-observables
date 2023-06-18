@@ -20,6 +20,8 @@ import { ServerResolver } from './servers/server/server-resolver.service';
 import { PipesComponent } from './pipes/pipes.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpComponent } from './http/http.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +36,15 @@ import { FilterPipe } from './pipes/filter.pipe';
     ErrorPageComponent,
     PipesComponent,
     ShortenPipe,
-    FilterPipe
+    FilterPipe,
+    HttpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [ServersService, AuthService, AuthGuard, canDeactivateGuard, ServerResolver],
   bootstrap: [AppComponent]

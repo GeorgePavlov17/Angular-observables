@@ -13,6 +13,7 @@ import { canDeactivateGuard } from './servers/edit-server/can-deactivate-guard';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServerResolver } from './servers/server/server-resolver.service';
 import { PipesComponent } from './pipes/pipes.component';
+import { HttpComponent } from './http/http.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [
   ]},
   // { path: 'not-found', component: PageNotFoundComponent },
   { path: 'pipes', component: PipesComponent },
+  { path: 'http', component: HttpComponent },
   { path: 'not-found', component: ErrorPageComponent, data: {message: 'Page not found!'} },
   { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
 ];
