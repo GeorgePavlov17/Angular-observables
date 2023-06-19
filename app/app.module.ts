@@ -20,8 +20,9 @@ import { ServerResolver } from './servers/server/server-resolver.service';
 import { PipesComponent } from './pipes/pipes.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpComponent } from './http/http.component';
+import { AuthInterceptorService } from './http/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,13 @@ import { HttpComponent } from './http/http.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ServersService, AuthService, AuthGuard, canDeactivateGuard, ServerResolver],
+  providers: [
+    ServersService, 
+    AuthService, 
+    AuthGuard, 
+    canDeactivateGuard, 
+    ServerResolver, 
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
