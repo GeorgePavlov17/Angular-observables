@@ -23,6 +23,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpComponent } from './http/http.component';
 import { AuthInterceptorService } from './http/auth-interceptor.service';
+import { LoginInterceptorService } from './http/logging-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { AuthInterceptorService } from './http/auth-interceptor.service';
     AuthGuard, 
     canDeactivateGuard, 
     ServerResolver, 
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
